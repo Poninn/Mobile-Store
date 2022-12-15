@@ -1,0 +1,35 @@
+<div class="bg">
+   
+    <!-- Mobile Area-->
+    
+    <div><app-search (searchTextChanged)="onserachTextEntered($event)"></app-search></div>
+  
+    <div><app-filter 
+        [all] = "getAllItems()"
+        [iphone] = "getTotalIphone()"
+        [ipad] = "getTotalIpad()"
+        [mac] = "getTotalMac()"
+        [watch] = "getTotalWatch()"
+        (filterRadioButtonSelectionChange)="onFilterRadioButtonChanged($event)"></app-filter></div>
+        <h1> <i class="fa-brands fa-apple"></i>  Products avaiable  </h1>
+    <ng-container *ngFor = "let product of products">
+  
+    
+    <div class="course container col-sm-2" *ngIf = "productCountRadioButton === 'All'|| productCountRadioButton === product.type" > 
+        <div class="course container col-sm-2" *ngIf = "searchText === ''|| product.model.toLowerCase().includes(searchText) " >
+         <div class="mob-card">
+        <div>
+           <img [src] = "product.image" style="width : 150px; height : 150px" >
+        </div>
+        <div class = "a">{{product.name}}</div>
+        <div class = "b">{{product.model}}</div>
+        <div class = "c">{{product.price}}</div>
+      <br>
+        <div class="mob-button">
+          <button class=" btn btn-primary" (click)="buy()">Buy</button> 
+          <button class=" btn btn-primary" (click)="details()">Details</button>
+        </div>
+      </div>
+          </div>
+    </div>
+     </ng-container>
